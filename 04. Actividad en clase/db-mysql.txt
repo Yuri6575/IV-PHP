@@ -1,0 +1,92 @@
+SQL BASE DE DATOS DESDE CONSOLA
+
+abrir el en ventana en xampp panel de control SHELL
+1. digita mysql -u root -p
+2. Enter password:
+3. CREATE DATABASE ESCUELA;
+Ahora está conectado a la base de datos Query OK, 1 row affected (0.002 sec)
+4.USE ESCUELA;
+MariaDB [ESCUELA]> CREATE TABLE ALUMNO (
+    ->     ID INT AUTO_INCREMENT PRIMARY KEY,
+    ->     NOMBRE VARCHAR(50) NOT NULL,
+    ->     EDAD INT,
+    ->     EMAIL VARCHAR(100) UNIQUE
+    -> );
+Query OK, 0 rows affected (0.031 sec)
+
+4. crear una tabla ALUMNO:
+CREATE TABLE ALUMNO(ID serial PRIMARY KEY,NOMBRE varchar(50) NOT NULL, EDAD int, EMAIL varchar(100) UNIQUE);
+
+
+-- Primero crear la tabla GRUPO
+CREATE TABLE GRUPO (
+    CODIGO VARCHAR(100) PRIMARY KEY,
+    NOMBRE VARCHAR(50) NOT NULL,
+    CREDITOS INT
+
+-- Luego crear la tabla MATRICULA con las claves foráneas
+MariaDB [ESCUELA]> CREATE TABLE MATRICULA (
+    ->     ID INT AUTO_INCREMENT PRIMARY KEY,
+    ->     ALUMNO_ID INT,
+    ->     GRUPO_CODIGO VARCHAR(100),
+    ->     FECHA_MATRICULA DATE,
+    ->     ESTADO VARCHAR(20) DEFAULT 'ACTIVA'
+    -> );
+Query OK, 0 rows affected (0.011 sec)
+
+MariaDB [escuela]> INSERT INTO alumno (nombre, edad, email) VALUES
+    -> ('Juan Pérez', 20, 'juan.perez@gmail.com'),
+    -> ('María García', 21, 'maria.garcia@gmail.com'),
+    -> ('Carlos López', 22, 'carlos.lopez@gmail.com'),
+    -> ('Ana Martínez', 19, 'ana.martinez@gmail.com'),
+    -> ('Pedro Rodríguez', 23, 'pedro.rodriguez@gmail.com'),
+    -> ('Laura Sánchez', 20, 'laura.sanchez@gmail.com'),
+    -> ('Miguel González', 21, 'miguel.gonzalez@gmail.com'),
+    -> ('Sofía Fernández', 22, 'sofia.fernandez@gmail.com'),
+    -> ('José Ramírez', 19, 'jose.ramirez@gmail.com'),
+    -> ('Daniela Torres', 23, 'daniela.torres@gmail.com'),
+    -> ('Alejandro Díaz', 20, 'alejandro.diaz@gmail.com'),
+    -> ('Valentina Ruiz', 21, 'valentina.ruiz@gmail.com'),
+    -> ('Ricardo Mendoza', 22, 'ricardo.mendoza@gmail.com'),
+    -> ('Fernanda Castro', 19, 'fernanda.castro@gmail.com'),
+    -> ('Roberto Ortega', 23, 'roberto.ortega@gmail.com'),
+    -> ('Gabriela Silva', 20, 'gabriela.silva@gmail.com'),
+    -> ('Diego Herrera', 21, 'diego.herrera@gmail.com'),
+    -> ('Patricia Núñez', 22, 'patricia.nunez@gmail.com'),
+    -> ('Jorge Vargas', 19, 'jorge.vargas@gmail.com');
+Query OK, 19 rows affected, 11 warnings (0.013 sec)
+Records: 19  Duplicates: 0  Warnings: 11
+
+5. Para verificar que los datos se insertaron correctamente:
+SELECT * FROM alumno;
+SELECT COUNT(*) AS total_alumnos FROM alumno;
+
+1. Primero verifica que estás en la base de datos correcta:
+sql
+SHOW DATABASES;
+2. Si estás dentro de la base de datos ESCUELA, sal primero:
+USE mysql;  -- o cualquier otra base de datos
+3. Luego elimina la base de datos:
+DROP DATABASE ESCUELA;
+4. Verifica que se eliminó:
+SHOW DATABASES;
+⚠️ ADVERTENCIA IMPORTANTE:
+El comando DROP DATABASE es irreversible
+
+Eliminará permanentemente toda la base de datos y todas sus tablas
+
+Se perderán todos los datos definitivamente
+
+--Si solo quieres eliminar una tabla específica (no toda la base de datos):
+
+-- Primero selecciona la base de datos
+USE ESCUELA;
+
+-- Luego elimina una tabla específica
+DROP TABLE nombre_de_la_tabla;
+Ejemplo de eliminar tablas individuales:
+USE ESCUELA;
+DROP TABLE MATRICULA;
+DROP TABLE GRUPO;
+DROP TABLE ALUMNO;
+	
