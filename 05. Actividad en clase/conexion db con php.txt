@@ -1,0 +1,70 @@
+<?php
+function conectar (){
+$host = "localhost";
+$puerto = "3306"; 
+$database = "classagro";
+$user = "root"; // root = mysql
+$password = " ";
+
+$cadenaConexion = "host = $host port = $puerto dbname = $database user = $user password = $password";
+
+$conexion = pg_connect($cadenaConexion);
+
+	if (!$conexion){
+		die("error de conexion" . pg_last_error());
+		return $conexion;
+	}
+
+function desconectar ($conexion){
+	pg_close($conexion);
+}
+return $conexion;
+}
+
+
+fgest(SIN IN)=
+trim ()
+prepare()
+bind parameter()
+execute()
+num_rows:
+fetch_assoc()
+while
+
+
+trim()
+Función: Elimina espacios en blanco al inicio y final de una cadena
+Para qué sirve: Limpiar datos de formularios para evitar espacios no deseados
+Ejemplo: " Juan " se convierte en "Juan"
+$nombre = trim($_POST['nombre']);
+
+
+prepare()
+Función: Prepara una sentencia SQL para ejecución
+Para qué sirve: Previene inyecciones SQL y mejora el rendimiento en queries repetitivos
+Ventaja: Seguridad contra ataques de inyección SQL
+$stmt = $pdo->prepare("INSERT INTO fincas VALUES (?, ?, ?, ?)");
+
+
+bindParam()
+
+Función: Vincula un parámetro PHP a una variable de la sentencia preparada
+Para qué sirve: Asigna valores de forma segura a los placeholders (? o :nombre)
+$stmt->bindParam(1, $nombre_finca, PDO::PARAM_STR);
+
+
+Parámetros:
+
+Posición o nombre del placeholder
+
+Variable PHP
+
+Tipo de dato (opcional)
+
+execute()
+
+Función: Ejecuta una sentencia preparada
+Para qué sirve: Ejecuta la consulta SQL con los parámetros vinculados
+Retorno: true en éxito, false en error
+
+$stmt->execute();
